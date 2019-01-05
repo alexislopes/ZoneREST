@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,13 @@ import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 
 @RestController
+@RequestMapping("api")
 public class PersonController {
 
 	@Autowired
 	private PersonService personService;
 	
-	@RequestMapping("/create")
+	@PostMapping("/create")
 	public String create(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int age) {
 		Person p = personService.create(firstName, lastName, age);
 		return p.toString();

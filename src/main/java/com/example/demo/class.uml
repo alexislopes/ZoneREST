@@ -3,7 +3,7 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-402.0" y="-138.0">com.example.demo.model.Usuario</node>
+    <node x="0.0" y="0.0">com.example.demo.model.Usuario</node>
   </nodes>
   <notes />
   <edges />
@@ -11,7 +11,9 @@
   <SelectedNodes>
     <node>com.example.demo.model.Usuario</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

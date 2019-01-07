@@ -7,6 +7,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +24,8 @@ public class UsuarioController {
 
     @ApiOperation(value = "Salva um usuário")
     @PostMapping(value = "salvaUsuario")
-    public Usuario salvaUsuario(@RequestParam String nome, @RequestParam String sobrenome){
-        return usuarioServico.salvaUsuario(new Usuario(nome,sobrenome));
+    public Usuario salvaUsuario(@RequestBody @Valid Usuario usuario) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        return usuarioServico.salvaUsuario(usuario);
     }
 
     @ApiOperation(value = "Acha um usuário pelo seu ID")
@@ -48,5 +51,11 @@ public class UsuarioController {
     @PutMapping(value = "atualizaUsuario")
     public Usuario atualizaUsuario(@RequestBody Usuario usuario){
         return usuarioServico.atualizaUsuario(usuario);
+    }
+
+    @ApiOperation(value = "Acha um usuário por tipo")
+    @GetMapping(value = "achaUsuarioPorTipo")
+    public List<Usuario> achaUsuarioPorTipo(String tipo){
+        return usuarioServico.achaUsuarioPorTipo(tipo);
     }
 }

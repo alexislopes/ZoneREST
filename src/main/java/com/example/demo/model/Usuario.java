@@ -9,6 +9,12 @@ public class Usuario {
     private String _id;
     private String nome;
     private String sobrenome;
+    private String username;
+    private String senha;
+    private String tipo;
+    private Veiculo veiculo;
+    private Contato contato;
+
 
     public Usuario() {
     }
@@ -27,9 +33,14 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "_id=" + _id +
+                "_id='" + _id + '\'' +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
+                ", username='" + username + '\'' +
+                ", senha='" + senha + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", veiculo=" + veiculo +
+                ", contato=" + contato +
                 '}';
     }
 
@@ -56,4 +67,65 @@ public class Usuario {
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    /*{
+        "nome":"teste",
+            "sobrenome":"sobreteste",
+            "username":"testeBR",
+            "senha":"testedosteste",
+            "tipo":"motorista",
+            "veiculo" : {
+        "marca":"fiat",
+                "modelo":"uno",
+                "ano":"1996",
+                "placa":"BRL 1616",
+                "detalhes":"tunadão"
+    } ,
+        "contato" : {
+        "email":"teste@teste.com",
+                "telefones":[
+        154685498
+        ]
+    }
+    }*/
 }

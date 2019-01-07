@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.rules.Encript;
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.rules.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,34 +21,41 @@ public class UsuarioServico {
     ////////////////////////////////////////////// Métodos de Criação e Leitura.
 
     //Salvar usuário.
-    public Usuario salvaUsuario(Usuario usuario){
+    public Usuario salvaUsuario(Usuario usuario) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        usuario.set_id(ID.getUsuarioId());
+        usuario.setSenha(Encript.criptografar(usuario.getSenha()));
         return usuarioRepository.save(usuario);
     }
 
     //Acha usuario por ID.
-    public Optional<Usuario> achaUsuarioPorId(String id){
-       return usuarioRepository.findById(id);
+    public Optional<Usuario> achaUsuarioPorId(String id) {
+        return usuarioRepository.findById(id);
     }
 
     //Acha todos os usuários.
-    public List<Usuario> achaTodosUsuarios(){
+    public List<Usuario> achaTodosUsuarios() {
         return usuarioRepository.findAll();
     }
 
     //Acha usuario por nome.
-    public Usuario achaUsuarioPorNome(String nome){
+    public Usuario achaUsuarioPorNome(String nome) {
         return usuarioRepository.findByNome(nome);
+    }
+
+    //Acha usuario por tipo.
+    public List<Usuario> achaUsuarioPorTipo(String tipo) {
+        return usuarioRepository.findUsuarioByTipo(tipo);
     }
 
     ////////////////////////////////////////////// Métodos de Deleção e Atualização.
 
     //Deleta usuário
-    public void deletaUsuario(Usuario usuario){
+    public void deletaUsuario(Usuario usuario) {
         usuarioRepository.delete(usuario);
     }
 
     //Atualiza usuário
-    public Usuario atualizaUsuario(Usuario usuario){
+    public Usuario atualizaUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 }

@@ -8,6 +8,5 @@ public class ZoneRESTApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZoneRESTApplication.class, args);
-	
 	}
 }

@@ -1,14 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.rules.Encript;
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
-import com.example.demo.rules.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +17,7 @@ public class UsuarioServico {
     ////////////////////////////////////////////// Métodos de Criação e Leitura.
 
     //Salvar usuário.
-    public Usuario salvaUsuario(Usuario usuario) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        usuario.set_id(ID.getUsuarioId());
-        usuario.setSenha(Encript.criptografar(usuario.getSenha()));
+    public Usuario salvaUsuario(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
 
@@ -57,5 +51,10 @@ public class UsuarioServico {
     //Atualiza usuário
     public Usuario atualizaUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
+    }
+
+    //Retorna um ID para um usuario.
+    public String getUsuarioId(){
+        return "U0" + achaTodosUsuarios().size();
     }
 }

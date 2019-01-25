@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Usuario {
+
     @Id
     private String _id;
     private String nome;

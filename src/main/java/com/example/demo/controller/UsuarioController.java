@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Usuario;
+import com.example.demo.rules.Encript;
 import com.example.demo.service.UsuarioServico;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +26,8 @@ public class UsuarioController {
     @ApiOperation(value = "Salva um usuário")
     @PostMapping(value = "salvaUsuario")
     public Usuario salvaUsuario(@RequestBody @Valid Usuario usuario) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        usuario.set_id(usuarioServico.getUsuarioId());
+        usuario.setSenha(Encript.criptografar(usuario.getSenha()));
         return usuarioServico.salvaUsuario(usuario);
     }
 

@@ -3,4 +3,4 @@ Zone REST é uma API de Web Services que inicialmente suporta serviços de CRUD 
 
 #Conexão
 
-Clique [aqui] para acessar a API(https://new-zone-rest.herokuapp.com/swagger-ui.html)
+Clique [aqui](https://new-zone-rest.herokuapp.com/swagger-ui.html) para acessar a API

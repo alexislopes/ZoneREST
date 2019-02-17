@@ -2,9 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.rules.Encript;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +42,18 @@ public class UsuarioServico {
     //Acha usuario por tipo.
     public List<Usuario> achaUsuarioPorTipo(String tipo) {
         return usuarioRepository.findUsuarioByTipo(tipo);
+    }
+
+    public boolean verificaLogin(String username, String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        boolean logado = false;
+
+        Usuario usuario = usuarioRepository.findByUsername(username);
+
+        if(usuario.getSenha().equals(Encript.criptografar(senha))){
+            logado = true;
+        }
+
+        return logado;
     }
 
     ////////////////////////////////////////////// Métodos de Deleção e Atualização.

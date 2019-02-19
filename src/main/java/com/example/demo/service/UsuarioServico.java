@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,13 +48,25 @@ public class UsuarioServico {
     public boolean verificaLogin(String username, String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         boolean logado = false;
 
-        Usuario usuario = usuarioRepository.findByUsername(username);
+        if(achaTodosUsernames().contains(username)) {
+            Usuario usuario = usuarioRepository.findByUsername(username);
 
-        if(usuario.getSenha().equals(Encript.criptografar(senha))){
-            logado = true;
+            if(usuario.getSenha().equals(Encript.criptografar(senha))){
+                logado = true;
+            }
         }
 
         return logado;
+    }
+
+    public List<String> achaTodosUsernames(){
+        List<Usuario> usuarios = achaTodosUsuarios();
+        List<String> usernames = new ArrayList<>();
+
+        for(Usuario u : usuarios){
+            usernames.add(u.getUsername());
+        }
+        return usernames;
     }
 
     ////////////////////////////////////////////// Métodos de Deleção e Atualização.

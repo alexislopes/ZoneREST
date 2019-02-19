@@ -67,4 +67,10 @@ public class UsuarioController {
     public boolean verificaLogin(@RequestParam String username, @RequestParam String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         return usuarioServico.verificaLogin(username, senha);
     }
+
+    @ApiOperation(value = "Retorna usernames de todos usuários")
+    @GetMapping(value = "achaTodosUsernames")
+    public List<String> achaTodosUsernames(){
+        return usuarioServico.achaTodosUsernames();
+    }
 }

@@ -64,7 +64,7 @@ public class UsuarioController {
 
     @ApiOperation(value = "Verifica se usuário está cadastrado")
     @GetMapping(value = "login")
-    public boolean verificaLogin(@RequestParam String username, @RequestParam String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public String verificaLogin(@RequestParam String username, @RequestParam String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         return usuarioServico.verificaLogin(username, senha);
     }
 

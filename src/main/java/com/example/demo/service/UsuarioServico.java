@@ -45,18 +45,18 @@ public class UsuarioServico {
         return usuarioRepository.findUsuarioByTipo(tipo);
     }
 
-    public boolean verificaLogin(String username, String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        boolean logado = false;
+    public String verificaLogin(String username, String senha) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String acesso = "negado";
 
         if(achaTodosUsernames().contains(username)) {
             Usuario usuario = usuarioRepository.findByUsername(username);
 
             if(usuario.getSenha().equals(Encript.criptografar(senha))){
-                logado = true;
+                acesso = "permitido";
             }
         }
 
-        return logado;
+        return acesso;
     }
 
     public List<String> achaTodosUsernames(){
